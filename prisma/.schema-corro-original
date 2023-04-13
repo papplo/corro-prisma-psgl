@@ -1,0 +1,48 @@
+model Product {
+  id                   String              @id @unique @default(cuid())
+  name                 String?
+  published            DateTime?           @default(now()) @updatedAt
+  draft                Boolean?            @default(true)
+  product_reference_id String?             @unique
+  price                Float?
+  rebate               Float?
+  category             product_category?   @default(products)
+  description_short    String?
+  description_body     String?
+  variations           Product_variation[]
+}
+
+model Product_variation {
+  id                   String   @id @unique @default(cuid())
+  name                 String?
+  draft                Boolean? @default(true)
+  product_reference_id String?  @unique
+  price                Float?
+  rebate               Float?
+  description_short    String?
+  description_body     String?
+  Product              Product? @relation(fields: [productId], references: [id])
+  productId            String?
+}
+
+model Freight {
+  id          String             @id @unique @default(cuid())
+  name        String?
+  price       Float?
+  description String?
+  category    shipping_category?
+}
+
+enum product_category {
+  products
+  sale
+  demo
+  variation
+}
+
+enum shipping_category {
+  express
+  next_day
+  bi_weekly
+  exportation
+}
