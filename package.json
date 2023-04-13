@@ -7,7 +7,9 @@
     "build:client": "esbuild src/index.js --bundle --outfile=build/public/bundle.js --loader:.js=jsx",
     "build:server": "esbuild server/server.jsx --bundle --outfile=build/server.js --platform=node",
     "build": "npm run build:client && npm run build:server",
-    "start": "node ./build/server.js"
+    "start": "node ./build/server.js",
+    "dev": "watch 'npm run build' src server --ignoreDotFiles --ignoreInitial & npm run start"
+
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -15,13 +17,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "prisma": "^4.12.0"
+    "prisma": "^4.12.0",
+    "watch": "^1.0.2"
   },
   "dependencies": {
     "@prisma/client": "^4.12.0",
     "esbuild": "^0.17.16",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "swr": "^2.1.3"
   }
 }
