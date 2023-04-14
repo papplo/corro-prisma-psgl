@@ -23,6 +23,9 @@ model Product {
   description_short    String?
   description_body     String?
   variations           Product_variation[]
+  shipping             Freight?            @relation(fields: [freightId], references: [id])
+  images               Image[]
+  freightId            String?
 }
 
 model Product_variation {
@@ -44,6 +47,16 @@ model Freight {
   price       Float?
   description String?
   category    shipping_category?
+  Product     Product[]
+}
+
+model Image {
+  id        String   @id @unique @default(cuid())
+  src       String
+  host      String?
+  alt_text  String?
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
 }
 
 enum product_category {
