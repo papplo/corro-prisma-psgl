@@ -6,9 +6,9 @@
   "scripts": {
     "build:client": "esbuild src/index.js --bundle --outfile=build/public/bundle.js --loader:.js=jsx",
     "build:server": "esbuild server/server.jsx --bundle --outfile=build/server.js --platform=node",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:client & npm run build:server",
     "start": "node ./build/server.js",
-    "watch": "watch 'npm run build' src server --ignoreDotFiles --ignoreInitial",
+    "watch": "watch 'npm run build' src server --ignoreDotFiles",
     "dev": "concurrently --kill-others \"npm run watch\" \"npm run start\"",
     "clean": "rm -rf ./build"
   },

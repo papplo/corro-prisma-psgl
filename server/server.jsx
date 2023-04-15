@@ -12,23 +12,24 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.get("/", async (req, res) => {
+  const products = await prisma.product.findMany();
+  const AppBody = ReactDOMServer.renderToString(
+    <App productData={products} />
+  );
+
   fs.readFile(path.resolve("./public/index.html"), "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send("Oops, better luck next time!");
     }
+
     return res.send(
-      data.replace(
-        '<div id="root"></div>',
-        `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
-      )
+      data.replace('<div id="root"></div>', `<div id="root">${AppBody}</div>`)
     );
   });
 });
 
-
-app.use('/static', express.static(path.join(__dirname, 'public')))
-
+app.use("/static", express.static(path.join(__dirname, "public")));
 
 app.get("/products", async (req, res) => {
   const products = await prisma.product.findMany();
