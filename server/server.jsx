@@ -13,9 +13,7 @@ const prisma = new PrismaClient();
 
 app.get("/", async (req, res) => {
   const products = await prisma.product.findMany();
-  const AppBody = ReactDOMServer.renderToString(
-    <App productData={products} />
-  );
+  const AppBody = ReactDOMServer.renderToString(<App productData={products} />);
 
   fs.readFile(path.resolve("./public/index.html"), "utf8", (err, data) => {
     if (err) {
@@ -32,12 +30,21 @@ app.get("/", async (req, res) => {
 app.use("/static", express.static(path.join(__dirname, "public")));
 
 app.get("/products", async (req, res) => {
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    include: {
+      images: true,
+    },
+  });
+
   res.json({
     data: products.map((product) => ({
       id: product.id,
       name: product.name,
-      price: product.price - product.rebate,
+      price: `${(product.price - product.rebate)} CLP`,
+      image: `${product.images?.[0]?.src}?w=700&h=400&q=80`,
     })),
   });
 });
