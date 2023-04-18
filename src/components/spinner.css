@@ -1,0 +1,51 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #fffbd6;
+  display: grid;
+}
+
+.text {
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  font-family: Nanum Brush Script;
+  font-size: 28px;
+  fill: #111;
+  text-shadow: 2px 0px #ccc;
+}
+
+#rotatingText {
+  animation-name: rotate-circle;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  grid-area: 1 / 1;
+}
+
+@keyframes rotate-circle {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.main {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+.main .noun_marraqueta {
+  animation-name: rotate-circle;
+  animation-direction: reverse;
+  animation-duration: 18s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  grid-area: 1 / 1;
+
+  filter: drop-shadow(0px 0px 2px #333);
+}

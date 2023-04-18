@@ -22,11 +22,11 @@ export default function App(props) {
   return (
     <main>
       <Navigation />
-      <SectionCarousel />
+      {/* <SectionCarousel /> */}
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
         <ProductGrid products={productData} />
       </div>
-      <SectionFull />
+      {/* <SectionFull /> */}
 
       <SectionFooter />
     </main>

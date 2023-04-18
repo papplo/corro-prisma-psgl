@@ -25,7 +25,8 @@ export const Navigation = () => {
 
             <div className="order-1 md:order-2">
                 <a className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
-                    <Header />
+                    {/* <Header /> */}
+                    <h1>Corro</h1>
                 </a>
             </div>
 

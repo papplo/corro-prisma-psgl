@@ -5,13 +5,28 @@ import ReactDOMServer from "react-dom/server";
 import express from "express";
 import App from "../src/App";
 import { PrismaClient } from "@prisma/client";
+import { Spinner } from "../src/components/Spinner";
 
 const PORT = 3000;
 
 const app = express();
 const prisma = new PrismaClient();
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+  const AppTempBody = ReactDOMServer.renderToString(<Spinner />);
+  fs.readFile(path.resolve("./public/default.html"), "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Oops, better luck next time!");
+    }
+
+    return res.send(
+      data.replace('<div id="root"></div>', `<div id="root">${AppTempBody}</div>`)
+    );
+  });
+});
+
+app.get("/shop", async (req, res) => {
   const products = await prisma.product.findMany();
   const AppBody = ReactDOMServer.renderToString(<App productData={products} />);
 

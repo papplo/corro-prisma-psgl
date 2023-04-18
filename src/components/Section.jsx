@@ -43,7 +43,7 @@ export const SectionCarousel = ({ children, title }) => (
         name="carousel"
         aria-hidden="true"
         hidden=""
-        checked="checked"
+        defaultChecked="checked"
       />
       <div
         className="carousel-item absolute opacity-0"
