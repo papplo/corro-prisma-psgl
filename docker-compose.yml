@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: nodejs:latest
+    image: paketobuildpacks/nodejs:latest
     container_name: nodejs
     restart: unless-stopped
     ports:
