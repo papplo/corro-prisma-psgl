@@ -18,7 +18,7 @@ services:
   nodejs:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.webserver
     image: paketobuildpacks/nodejs:latest
     container_name: nodejs
     restart: unless-stopped
