@@ -3,8 +3,7 @@ import "./spinner.css";
 
 export const Spinner = () => {
   return (
-    <>
-      {/* <img src="https://www.kirupa.com/icon/1f354.svg" width="50" height="50" /> */}
+    <div className="main">
       <NounMarraqueta />
       <svg id="rotatingText" viewBox="0 0 200 200" width="200" height="200">
         <defs>
@@ -27,7 +26,7 @@ export const Spinner = () => {
           </textPath>
         </text>
       </svg>
-    </>
+    </div>
   );
 };
 

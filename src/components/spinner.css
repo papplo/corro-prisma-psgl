@@ -32,6 +32,8 @@ body {
 }
 
 .main {
+  height: inherit;
+  transform: scale(1.5);
   display: grid;
   align-items: center;
   justify-items: center;
@@ -39,6 +41,7 @@ body {
   grid-template-rows: 1fr;
 }
 .main .noun_marraqueta {
+  transform: translate(0, 20px);
   animation-name: rotate-circle;
   animation-direction: reverse;
   animation-duration: 18s;
