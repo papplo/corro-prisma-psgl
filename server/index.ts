@@ -61,7 +61,7 @@ async function startServer() {
       },
     });
     res.json({
-      data: product,
+      data: {...product, price: `${(product?.price - product?.rebate)} CLP`},
     });
   });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./spinner.css";
 
-export const Spinner = () => {
+export const Spinner = (props: { title: string }) => {
   return (
     <div className="main">
       <NounMarraqueta />
@@ -18,11 +18,11 @@ export const Spinner = () => {
         </defs>
         <text width="800">
           <textPath
-            alignmentBaseline="top"
+            alignmentBaseline="inherit"
             xlinkHref="#circle"
             className="text"
           >
-            Corro por ti marraqueta! Coming Soon huaso!
+            {props.title}
           </textPath>
         </text>
       </svg>

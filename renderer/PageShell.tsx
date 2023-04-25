@@ -4,6 +4,8 @@ import { PageContextProvider } from './usePageContext'
 import type { PageContext } from './types'
 import './PageShell.css'
 import { Link } from './Link'
+import { Spinner } from './Spinner'
+import { Navigation } from '#root/components/Navigation'
 
 export { PageShell }
 
@@ -12,15 +14,16 @@ function PageShell({ children, pageContext }: { children: React.ReactNode; pageC
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
         <Layout>
-          <Sidebar>
-            <Logo />
+          <Navigation />
+          {/* <Sidebar>
+            <Spinner />
             <Link className="navitem" href="/">
               Home
             </Link>
             <Link className="navitem" href="/shop">
               Shop
             </Link>
-          </Sidebar>
+          </Sidebar> */}
           <Content>{children}</Content>
         </Layout>
       </PageContextProvider>
@@ -32,8 +35,8 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        display: 'flex',
-        maxWidth: 1400,
+        // display: 'flex',
+        maxWidth: 2000,
         margin: 'auto'
       }}
     >

@@ -1,5 +1,7 @@
 import react from '@vitejs/plugin-react'
 import ssr from 'vite-plugin-ssr/plugin'
+import svgr from 'vite-plugin-svgr'
+
 import { UserConfig } from 'vite'
 
 const config: UserConfig = {
@@ -8,7 +10,7 @@ const config: UserConfig = {
       '#root': __dirname
     }
   },
-  plugins: [react(), ssr()],
+  plugins: [react(), ssr(), svgr()],
   publicDir: 'public',
 }
 
