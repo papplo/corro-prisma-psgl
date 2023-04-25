@@ -1,8 +1,8 @@
 import * as React from "react";
 import useSWR from "swr";
-import { Navigation } from "./components/Navigation";
-import { ProductGrid } from "./components/products/ProductGrid";
-import { SectionCarousel, SectionFooter, SectionFull } from "./components/Section";
+import { Navigation } from "../components/Navigation";
+import { ProductGrid } from "../pages/shop/ProductsGrid";
+import { SectionCarousel, SectionFooter, SectionFull } from "../components/Section";
 
 export default function App(props) {
   const [productData, setData] = React.useState(props.productData);

@@ -4,7 +4,10 @@ import express from 'express'
 import compression from 'compression'
 import { renderPage } from 'vite-plugin-ssr/server'
 import { root } from './root.js'
+import * as Prisma from '@prisma/client'
+
 const isProduction = process.env.NODE_ENV === 'production'
+const prisma = new Prisma.PrismaClient();
 
 startServer()
 
@@ -27,6 +30,41 @@ async function startServer() {
     app.use(viteDevMiddleware)
   }
 
+
+  app.get("/api/products", async (req, res) => {
+    const products = await prisma.product.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      include: {
+        images: true,
+      },
+    });
+
+    res.json({
+      data: products.map((product) => ({
+        id: product.id,
+        name: product.name,
+        price: `${(product.price - product.rebate)} CLP`,
+        image: `${product.images?.[0]?.src}?w=700&h=400&q=80`,
+      })),
+    });
+  });
+
+  app.get("/api/products/:id", async (req, res) => {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: req.params.id.toString(),
+      },
+      include: {
+        images: true,
+      },
+    });
+    res.json({
+      data: product,
+    });
+  });
+
   app.get('*', async (req, res, next) => {
     const pageContextInit = {
       urlOriginal: req.originalUrl
@@ -38,6 +76,7 @@ async function startServer() {
     if (res.writeEarlyHints) res.writeEarlyHints({ link: earlyHints.map((e) => e.earlyHintLink) })
     res.status(statusCode).type(contentType).send(body)
   })
+
 
   const port = process.env.PORT || 3000
   app.listen(port)

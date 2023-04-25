@@ -17,8 +17,8 @@ function PageShell({ children, pageContext }: { children: React.ReactNode; pageC
             <Link className="navitem" href="/">
               Home
             </Link>
-            <Link className="navitem" href="/about">
-              About
+            <Link className="navitem" href="/shop">
+              Shop
             </Link>
           </Sidebar>
           <Content>{children}</Content>
@@ -33,7 +33,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     <div
       style={{
         display: 'flex',
-        maxWidth: 900,
+        maxWidth: 1400,
         margin: 'auto'
       }}
     >

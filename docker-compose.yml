@@ -15,29 +15,29 @@ services:
     env_file:
       - .env
 
-  nodejs:
-    stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile.webserver
-    image: paketobuildpacks/nodejs:latest
-    container_name: nodejs
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/home/node/app
-      # - node_modules:/home/node/app/node_modules
+  # nodejs:
+  #   stdin_open: true
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.webserver
+  #   image: paketobuildpacks/nodejs:latest
+  #   container_name: nodejs
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - .:/home/node/app
+  #     # - node_modules:/home/node/app/node_modules
 
-    command:
-      - /bin/bash
-      - -c
-      - |
-        npm install
-        npm rebuild esbuild
-        npx prisma generate
-        npm run build
-        npm run start
+  #   command:
+  #     - /bin/bash
+  #     - -c
+  #     - |
+  #       npm install
+  #       npm rebuild esbuild
+  #       npx prisma generate
+  #       npm run build
+  #       npm run start
 
   prisma:
     stdin_open: true

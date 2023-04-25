@@ -13,9 +13,13 @@ import type {
   PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient
   //*/
 } from 'vite-plugin-ssr/types'
+import { Product } from "@prisma/client";
+
 
 type Page = (pageProps: PageProps) => React.ReactElement
-type PageProps = {}
+type PageProps = {
+  products?: Product[]
+}
 
 export type PageContextCustom = {
   Page: Page
